@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWords</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #06084a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1><img src="/proxy/8090/images/Q.png">Words</h1>
+    </div>
+    @using (Html.BeginForm("Index", "/proxy/8090/Game", FormMethod.Get))
+    {
+        <label>Please enter your name: </label>
+        <input type="text" name="user" required pattern="[a-zA-Z]{1,15}" title="Enter your name" id="user">
+        <button type="submit">Play</button>
+    }
+</body>
+</html>

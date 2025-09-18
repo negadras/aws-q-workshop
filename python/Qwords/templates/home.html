@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <form method="get" action="{{ game_url }}" class="mb-3">
+        <div class="mb-3">
+            <label for="user" class="form-label">Please enter your name:</label>
+            <input type="text" class="form-control" name="user" required pattern="[a-zA-Z]{1,15}" title="Enter your name (1-15 letters)" id="user">
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Play</button>
+        </div>
+    </form>
+{% endblock %}

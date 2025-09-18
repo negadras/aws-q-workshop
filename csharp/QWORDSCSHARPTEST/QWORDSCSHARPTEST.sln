@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QWORDSCSHARPTEST", "QWORDSCSHARPTEST.csproj", "{577F52B5-D193-437F-BA25-C533C1CBC313}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{577F52B5-D193-437F-BA25-C533C1CBC313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577F52B5-D193-437F-BA25-C533C1CBC313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577F52B5-D193-437F-BA25-C533C1CBC313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577F52B5-D193-437F-BA25-C533C1CBC313}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9073B5F7-CE7C-4CE9-9ADD-0A5F996443AC}
+	EndGlobalSection
+EndGlobal

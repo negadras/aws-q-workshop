@@ -1,0 +1,37 @@
+{
+  "type": "commonjs",
+  "name": "qwords",
+  "version": "0.0.1",
+  "description": "Wordle like game application implemented using express",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Nothing to Build'",
+    "start": "node index.js",
+    "test": "npx jest",
+    "debug": "node inspect app.js"
+  },
+  "keywords": [],
+  "author": "Ryan Bachman",
+  "contributors": [
+    {
+      "name": "Will Matos"
+    }
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "aws-sdk": "^2.1580.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.18.3",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "@jest/globals": "^29.7.0",
+    "babel-jest": "^29.7.0",
+    "eslint": "^9.3.0",
+    "jest": "^29.7.0"
+  }
+  
+}

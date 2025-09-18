@@ -1,0 +1,44 @@
+// vscode tasks.json configuration to switch folders
+// by running 'code-server -r ../<lang_folder>'.  
+// The lang folders are java, python, csharp, nodejs, and typescript
+// Use the title-cased lang_folder name for each language.
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Swtich to Java",
+            "type": "shell",
+            "command": "code-server -r ../java",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Swtich to Python",
+            "type": "shell",
+            "command": "code-server -r ../python",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Swtich to C#",
+            "type": "shell",
+            "command": "code-server -r ../csharp",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Swtich to Node.js",
+            "type": "shell",
+            "command": "code-server -r ../nodejs",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Swtich to TypeScript",
+            "type": "shell",
+            "command": "code-server -r ../typescript",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

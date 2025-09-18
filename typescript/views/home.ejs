@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWords - Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-container {
+            max-width: 500px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-height: 50px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: rotate(10deg);
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container home-container">
+        <div>Mode: <%= workshopMode %></div>
+        <div>Base Path: <%= basePath %></div>
+        <h1 class="text-center mb-4">
+            <img src="<%= basePath %>/images/Q.png" alt="Q" class="img-fluid logo"> Words
+        </h1>
+        <form method="get" action="<%= basePath %>/game" class="mb-3">
+            <div class="mb-3">
+                <label for="user" class="form-label">Please enter your name:</label>
+                <input type="text" class="form-control" name="user" required pattern="[a-zA-Z]{1,15}" 
+                       title="Enter your name (1-15 letters)" id="user">
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Play</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

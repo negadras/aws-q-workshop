@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model QWORDSCSHARP.Models.GameViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWords</title>
+    <style>
+        form {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .red {
+            color: Red;
+            font-weight: bold;
+        }
+
+        .yellow {
+            color: yellow;
+            font-weight: bold;
+        }
+
+        .green {
+            color: green;
+            font-weight: bold;
+        }
+
+        .dark {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1><img src="/proxy/8090/images/Q.png" alt="QWords">Words</h1>
+    </div>
+    <p>@Model.Message</p>
+    <p>Enter a 6 letter word</p>
+    <div>
+        @switch (Model.Status)
+        {
+            case GameStatus.InProgress:
+                using (Html.BeginForm("MakeGuess", "/proxy/8090/Game", FormMethod.Post))
+                {
+                    <input type="text" name="guess" required pattern="[a-zA-Z]{6}" title="Enter a word with 6 letters" />
+                    <input type="hidden" name="attempts" value="@Model.Attempts" />
+                    <input type="hidden" name="selectedWord" value="@Model.Word" />
+                    <button type="submit">MAKE GUESS</button>
+                }
+                break;
+            case GameStatus.Failed:
+                using (Html.BeginForm("Index", "/proxy/8090/Home", FormMethod.Get))
+                {
+                    <button type="submit">TRY AGAIN</button>
+                }
+                break;
+            case GameStatus.Success:
+                using (Html.BeginForm("Index", "/proxy/8090/Home", FormMethod.Get))
+                {
+                    <button type="submit">PLAY AGAIN</button>
+                }
+                break;
+        }
+    </div>
+
+    <p>Guessed Word: <span>@Model.Guess</span></p>
+    <p class="dark">
+        Result: </br>
+        + means correct letter and location, ? means correct letter but wrong location, X means wrong letter.</br>
+        @foreach (char c in Model.Result)
+        {
+            switch (c)
+            {
+                case '+':
+                    <span class="green">@c</span>
+                    break;
+                case '?':
+                    <span class="yellow">@c</span>
+                    break;
+                case 'X':
+                    <span class="red">@c</span>
+                    break;
+            }
+        }
+    </p>
+
+    <p>Attempts: <span>@Model.Attempts</span></p>
+
+</body>
+</html>
