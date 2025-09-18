@@ -137,6 +137,61 @@
             color: #2196F3;
         }
 
+        .history-panel {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            padding: 0.25rem;
+            border-radius: 4px;
+        }
+
+        .history-guess {
+            font-weight: bold;
+            margin-right: 1rem;
+            min-width: 80px;
+        }
+
+        .history-feedback {
+            display: flex;
+            gap: 2px;
+        }
+
+        .feedback-symbol {
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        .symbol-correct {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .symbol-wrong-position {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .symbol-incorrect {
+            background-color: #dc3545;
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -219,17 +274,17 @@
                 </td>
             </tr>
             <tr th:if="${guessHistory != null and !guessHistory.isEmpty()}">
-                <td class="label">Guess History:</td>
-                <td class="content">
-                    <div th:each="history : ${guessHistory}" class="mb-2">
-                        <div class="d-flex align-items-center">
-                            <span th:text="${history.guess}" class="me-3 fw-bold"></span>
-                            <div>
-                                <th:block th:each="c, iterStat : ${history.result.toCharArray()}">
+                <td colspan="2">
+                    <div class="history-panel">
+                        <h6 class="mb-3">Guess History</h6>
+                        <div th:each="history : ${guessHistory}" class="history-item">
+                            <span th:text="${history.guess}" class="history-guess"></span>
+                            <div class="history-feedback">
+                                <th:block th:each="c, iterStat : ${history.feedback.toCharArray()}">
                                     <span
-                                        th:class="${(c + '') == '+' ? 'letter-box correct' : 
-                                                        ((c + '') == '?' ? 'letter-box wrong-position' : 'letter-box incorrect')}"
-                                        th:text="${history.guess.charAt(iterStat.index)}">
+                                        th:class="${(c + '') == '+' ? 'feedback-symbol symbol-correct' : 
+                                                        ((c + '') == '?' ? 'feedback-symbol symbol-wrong-position' : 'feedback-symbol symbol-incorrect')}"
+                                        th:text="${(c + '') == '+' ? '+' : ((c + '') == '?' ? '?' : 'X')}">
                                     </span>
                                 </th:block>
                             </div>

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sample.qwords.model.GameStatus;
-import com.sample.qwords.model.GuessHistory;
+import com.sample.qwords.model.GuessResult;
 import com.sample.qwords.model.Word;
 import com.sample.qwords.service.WordSelectionService;
 
@@ -40,7 +40,7 @@ public class GameController {
         // Log the current word
         log.info("Current word: {}", word.getWord());
         int attempts = 0;
-        List<GuessHistory> guessHistory = new ArrayList<>();
+        List<GuessResult> guessHistory = new ArrayList<>();
 
         String result = "";
 
@@ -72,11 +72,11 @@ public class GameController {
         
         // Add to guess history
         @SuppressWarnings("unchecked")
-        List<GuessHistory> guessHistory = (List<GuessHistory>) model.getAttribute("guessHistory");
+        List<GuessResult> guessHistory = (List<GuessResult>) model.getAttribute("guessHistory");
         if (guessHistory == null) {
             guessHistory = new ArrayList<>();
         }
-        guessHistory.add(new GuessHistory(guess, result));
+        guessHistory.add(new GuessResult(guess, result));
         
         model.addAttribute("user", user);
         model.addAttribute("guess", guess);
