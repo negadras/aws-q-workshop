@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Qwords Game API",
+    "description": "API documentation for the Qwords game",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/game/new": {
+      "post": {
+        "summary": "Start a new game",
+        "responses": {
+          "200": {
+            "description": "New game started successfully"
+          }
+        }
+      }
+    },
+    "/game/guess": {
+      "post": {
+        "summary": "Submit a guess",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "guess": {
+                    "type": "string",
+                    "description": "The word being guessed"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Guess processed successfully"
+          },
+          "400": {
+            "description": "Invalid guess"
+          }
+        }
+      }
+    }
+  }
+}

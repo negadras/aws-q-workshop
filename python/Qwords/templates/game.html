@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}Game{% endblock %}
+
+{% block content %}
+
+    <div class="info-tip">
+        <p>{{ message }}
+        </p>
+    </div>
+    <table class="game-table">
+        <tr>
+            <td colspan="2">
+                <div class="text-center">
+                    {% if status.name == "INPROGRESS" %}
+                    <form method="post" action="{{game_url}}">
+                        <div class="input-group mb-3">
+                            <input type="text" id="guess" name="guess" class="form-control" required pattern="[a-zA-Z]{6}"
+                                title="Enter a word with 6 letters" />
+                            <input type="hidden" id="attempts" name="attempts" value="{{ attempts }}">
+                            <input type="hidden" id="user" name="user" value="{{ user }}"/>
+                            <button class="btn btn-primary" type="submit">MAKE GUESS</button>
+                        </div>
+                    </form>
+                    {% elif status.name == "FAILED" %}
+                    <form method="get" action="{{game_url}}">
+                        <input type="hidden" id="user" name="user" value="{{ user }}" />
+                        <button class="btn btn-danger" type="submit">TRY AGAIN</button>
+                    </form>
+                    {% elif status.name == "SUCCESS" %}
+                    <div class="btn-group">
+                        <form method="get" action="{{game_url }}" class="me-2">
+                            <input type="hidden" id="user" name="user" value="{{ user }}" />
+                            <button class="btn btn-success" type="submit">PLAY AGAIN</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </td>
+        </tr>
+        
+        {% if guess %}
+        <tr>
+            <td class="label">Last Guessed Word:</td>
+            <td class="content">
+                <div class="text-center" id="guessedWord">
+                    <span>{{ guess }}</span>
+                </div>
+            </td>
+        </tr>
+        {% endif %}
+
+        {% if result %}
+        <tr>
+            <td class="label">Result:</td>
+            <td class="content">
+                <div class="text-center" id="result">
+                    {% for c in result %}
+                        {% if c == "+" %}
+                        <span class="letter-box green">{{ result[loop.index0] }}</span>
+                        {% elif c == "?" %}
+                        <span class="letter-box yellow">{{ result[loop.index0] }}</span>
+                        {% else %}
+                        <span class="letter-box red">{{ result[loop.index0] }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </td>
+        </tr>
+        {% endif %}
+
+        <tr>
+            <td class="label">Attempts:</td>
+            <td class="content">
+                <span class="fw-bold">{{ attempts }}</span>
+            </td>
+        </tr>
+    </table>
+    
+    {% endblock %}

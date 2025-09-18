@@ -1,0 +1,26 @@
+<project_structure>
+  <root_dir>
+    <config_files>pom.xml</config_files>
+    <file>README.md</file><dir>custom</dir><dir>src</dir>
+  </root_dir>
+  <src>
+    <main>
+      <resources>
+        <dirs>database_schema,static_assets/images,templates,word_list</dirs>
+        <file>application.properties</file>
+      </resources>
+      <java_code>
+        <package>com.sample.qwords</package>
+        <main_class>QWordsApplication</main_class>
+        <repository>
+          <class>WordList</class>
+        </repository>
+        <utils><class>RandomUtils</class><class>MathUtilityClasses</class></utils>
+        <controllers><class>GameController</class><class>GlobalExceptionHandler</class><class>HomeController</class></controllers>
+        <models><class>Word</class><class>GameStatus</class></models>
+        <services><class>WordSelectionService</class></services>
+      </java_code>
+    </main>
+  </src>
+  <src><test><package>com.sample.qwords</package><class>WordListTest</class></package></test></src>
+</project_structure>

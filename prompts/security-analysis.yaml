@@ -1,0 +1,19 @@
+task:
+    name: Security Analysis
+    type: security analysis
+    keywords:
+        - security
+        - security analysis
+        - improvement
+    prompt:
+        - Analyze the code in the current file and provide recommendations to enhance its security posture following best practices. Please perform the following tasks
+        - Identify any potential vulnerabilities or security risks in the current implementation, such as input validation issues, insecure data handling, or potential for code injection attacks like SQL injection and cross-site scripting (XSS).
+        - Suggest improvements to the code to mitigate the identified vulnerabilities and align with secure coding practices, providing code examples or explanations for the recommended changes. Where possible, include the code fix in a separate formatted code block with instructions on how to replace.
+        - Review the use of external dependencies or libraries, if any, and recommend secure alternatives or updates if necessary.
+        - Analyze the code for any potential performance or scalability issues that could lead to security risks, such as inefficient algorithms or data structures.
+        - Recommend any additional security measures or best practices that could be implemented in the code, such as input sanitization, error handling, or logging mechanisms.
+        - Provide guidance on secure coding practices specific to the Java programming language and the application's context, such as secure authentication, authorization, data encryption techniques, and the principle of least privilege.
+    additional_instructions:
+        Please provide a detailed report addressing each of the tasks listed above, with clear explanations and code examples where applicable. If there is a recommended code fix, output all possible code fixes in separate code-blocks to allow for easy insertion into the code base.
+    purpose:
+        This file provides guidance on performing a comprehensive security analysis of Java code. It covers identifying potential vulnerabilities, suggesting code improvements, reviewing dependencies, analyzing performance and scalability risks, recommending security measures, and providing secure coding practices specific to Java.

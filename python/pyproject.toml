@@ -1,0 +1,23 @@
+[project]
+name = "Qwords"
+version = "0.0.1"
+description = "Wordle like game application implemented in a Flask MVC application"
+requires-python = ">= 3.8"
+dependencies = [
+    "flask>3.0.0",
+]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["Qwords"]
+
+pythonpath = [
+  "."
+]

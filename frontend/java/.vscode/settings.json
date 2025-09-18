@@ -1,0 +1,9 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "github.copilot.editor.enableAutoCompletions": false,
+    "editor.inlineSuggest.enabled": true,
+    "chat.extensionTools.enabled": false,
+    "chat.agent.enabled": false,
+    "chat.commandCenter.enabled": false,
+    "chat.focusWindowOnConfirmation": false
+}
