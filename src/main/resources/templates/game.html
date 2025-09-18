@@ -253,12 +253,12 @@
                 <td class="content">
                     <div class="text-center" id="result">
                         <th:block th:if="${result + ''  != ''}">
-                            <th:block th:each="c : ${(result + '').toCharArray()}">
+                            <th:block th:each="c, iterStat : ${(result + '').toCharArray()}">
                                 <th:block th:if="${(c + '') != ''}">
                                     <span
                                         th:class="${(c + '') == '+' ? 'letter-box correct' : 
                                                         ((c + '') == '?' ? 'letter-box wrong-position' : 'letter-box incorrect')}"
-                                        th:text="${(c+'').toLowerCase()}">
+                                        th:text="${guess.charAt(iterStat.index)}">
                                     </span>
 
                                 </th:block>
@@ -284,7 +284,7 @@
                                     <span
                                         th:class="${(c + '') == '+' ? 'feedback-symbol symbol-correct' : 
                                                         ((c + '') == '?' ? 'feedback-symbol symbol-wrong-position' : 'feedback-symbol symbol-incorrect')}"
-                                        th:text="${(c + '') == '+' ? '+' : ((c + '') == '?' ? '?' : 'X')}">
+                                        th:text="${history.guess.charAt(iterStat.index)}">
                                     </span>
                                 </th:block>
                             </div>
