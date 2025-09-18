@@ -192,6 +192,58 @@
             color: white;
         }
 
+        .keyboard {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .keyboard-row {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .key {
+            min-width: 40px;
+            height: 50px;
+            border: none;
+            border-radius: 4px;
+            background-color: #d3d6da;
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.1s;
+        }
+
+        .key:hover {
+            background-color: #bbb;
+        }
+
+        .key.wide {
+            min-width: 60px;
+        }
+
+        .key.correct {
+            background-color: #6aaa64;
+            color: white;
+        }
+
+        .key.wrong-position {
+            background-color: #c9b458;
+            color: white;
+        }
+
+        .key.incorrect {
+            background-color: #787c7e;
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -211,11 +263,11 @@
                         <form th:case="'INPROGRESS'" method="post"                            
                             th:action="game" class="mb-3">
                             <div class="input-group mb-3">
-                                <input type="text" name="guess" class="form-control" required pattern="[a-zA-Z]{6}"
-                                    title="Enter a word with 6 letters" placeholder="Enter a 6-letter word." />
+                                <input type="text" name="guess" id="guessInput" class="form-control" required pattern="[a-zA-Z]{6}"
+                                    title="Enter a word with 6 letters" placeholder="Enter a 6-letter word." readonly />
                                 <input type="hidden" id="attempts" name="attempts" th:value="${attempts}">
                                 <input type="hidden" id="user" name="user" th:value="${user}"/>
-                                <button class="btn btn-primary" type="submit">MAKE GUESS</button>
+                                <button class="btn btn-primary" type="submit" id="submitBtn">MAKE GUESS</button>
                             </div>
                         </form>
                         <form th:case="'FAILED'" method="get" th:action="game"
@@ -293,6 +345,43 @@
                 </td>
             </tr>
             </table>
+            
+            <div th:if="${status?.name() == 'INPROGRESS'}" class="keyboard">
+                <div class="keyboard-row">
+                    <button class="key" data-key="q">Q</button>
+                    <button class="key" data-key="w">W</button>
+                    <button class="key" data-key="e">E</button>
+                    <button class="key" data-key="r">R</button>
+                    <button class="key" data-key="t">T</button>
+                    <button class="key" data-key="y">Y</button>
+                    <button class="key" data-key="u">U</button>
+                    <button class="key" data-key="i">I</button>
+                    <button class="key" data-key="o">O</button>
+                    <button class="key" data-key="p">P</button>
+                </div>
+                <div class="keyboard-row">
+                    <button class="key" data-key="a">A</button>
+                    <button class="key" data-key="s">S</button>
+                    <button class="key" data-key="d">D</button>
+                    <button class="key" data-key="f">F</button>
+                    <button class="key" data-key="g">G</button>
+                    <button class="key" data-key="h">H</button>
+                    <button class="key" data-key="j">J</button>
+                    <button class="key" data-key="k">K</button>
+                    <button class="key" data-key="l">L</button>
+                </div>
+                <div class="keyboard-row">
+                    <button class="key wide" data-key="enter">ENTER</button>
+                    <button class="key" data-key="z">Z</button>
+                    <button class="key" data-key="x">X</button>
+                    <button class="key" data-key="c">C</button>
+                    <button class="key" data-key="v">V</button>
+                    <button class="key" data-key="b">B</button>
+                    <button class="key" data-key="n">N</button>
+                    <button class="key" data-key="m">M</button>
+                    <button class="key wide" data-key="backspace">⌫</button>
+                </div>
+            </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
