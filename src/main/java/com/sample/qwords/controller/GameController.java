@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sample.qwords.model.GameStatus;
+import com.sample.qwords.model.GuessHistory;
 import com.sample.qwords.model.Word;
 import com.sample.qwords.service.WordSelectionService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.micrometer.core.lang.Nullable;
 import lombok.extern.log4j.Log4j2;
@@ -20,7 +24,7 @@ import lombok.extern.log4j.Log4j2;
  */
 @Controller
 @Log4j2
-@SessionAttributes({"word", "attempts"})
+@SessionAttributes({"word", "attempts", "guessHistory"})
 public class GameController {
 
     private final WordSelectionService wordBank;
@@ -36,6 +40,7 @@ public class GameController {
         // Log the current word
         log.info("Current word: {}", word.getWord());
         int attempts = 0;
+        List<GuessHistory> guessHistory = new ArrayList<>();
 
         String result = "";
 
@@ -46,6 +51,7 @@ public class GameController {
         model.addAttribute("status", GameStatus.INPROGRESS);
         model.addAttribute("user", user);
         model.addAttribute("attempts", attempts);
+        model.addAttribute("guessHistory", guessHistory);
         return "game";
     }
 
@@ -62,13 +68,21 @@ public class GameController {
         log.info("User {} made a guess: {}", user, guess);
         log.info("Guess: {}, model: {}, user: {}", guess, model, user);
         
-        
         attempts = addAttempt(attempts);
+        
+        // Add to guess history
+        @SuppressWarnings("unchecked")
+        List<GuessHistory> guessHistory = (List<GuessHistory>) model.getAttribute("guessHistory");
+        if (guessHistory == null) {
+            guessHistory = new ArrayList<>();
+        }
+        guessHistory.add(new GuessHistory(guess, result));
         
         model.addAttribute("user", user);
         model.addAttribute("guess", guess);
         model.addAttribute("result", result);
         model.addAttribute("attempts", attempts);
+        model.addAttribute("guessHistory", guessHistory);
 
         if (guess.equalsIgnoreCase(selectedWord)) {
             model.addAttribute("status", GameStatus.SUCCESS);
