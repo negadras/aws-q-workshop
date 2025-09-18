@@ -152,23 +152,24 @@ public class WordList {
     }
 
     public String getRandomWord() {
+        // Check if word list is empty to prevent IllegalArgumentException
+        if (wordList.isEmpty()) {
+            return null;
+        }
+        
+        // Generate random index within the bounds of the word list
         Random random = new Random();
         int index = random.nextInt(wordList.size());
         // log the selected index
         logger.info("Selected index: " + index);
-
-        // track the current and last word returned using
-        // lastWord and currentWord class properties
-        if (wordList.isEmpty()) {
-            return null;
-        }
 
         // if the currentWord is not null, store it in the lastWord variable before
         // getting a new word.
         if (currentWord != null) {
             lastWord = currentWord;
         }
-        currentWord = this.wordList.get(0);
+        // Select word at the randomly generated index
+        currentWord = this.wordList.get(index);
         return currentWord;
     }
 
